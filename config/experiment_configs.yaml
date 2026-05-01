@@ -1,0 +1,74 @@
+Configuration File (YAML)
+
+experiment_config:
+
+  general:
+    global_rounds: 10
+    num_clients: 10
+    local_epochs: 1
+    n_seeds: 3
+    seeds_list: [42, 123, 7]
+    client_fraction: 0.5
+
+  hardware:
+    cpu: "Intel(R) Core(TM) Ultra 7 258V"
+    system_ram: "32GB"
+    gpu: "Intel(R) Arc(TM) 140V (16GB VRAM)"
+
+  datasets:
+    - name: "CIFAR-10"
+      type: "vision"
+      samples: 60000
+      classes: 10
+      partition: "dirichlet"
+      dirichlet_alpha: 0.5
+      model: "CNN"
+
+    - name: "Shakespeare"
+      type: "text"
+      samples: 1600498
+      classes: 100
+      partition: "dirichlet"
+      dirichlet_alpha: 0.5
+      model: "LSTM"
+      seq_len: 30
+      embed_dim: 64
+      hidden_dim: 128
+      num_layers: 1
+
+  methods:
+    - name: "R0_FedAvg"
+      privacy_type: "None"
+      dp_enabled: false
+      secure_agg: false
+
+    - name: "R1a_DP_FL_Low_Noise"
+      privacy_type: "DP-SGD"
+      dp_enabled: true
+      noise_multiplier: 0.5
+      clipping_norm: 1.0
+      secure_agg: false
+
+    - name: "R1b_DP_FL_High_Noise"
+      privacy_type: "DP-SGD"
+      dp_enabled: true
+      noise_multiplier: 1.0
+      clipping_norm: 1.0
+      secure_agg: false
+
+    - name: "R2_SecAgg"
+      privacy_type: "Secure_Aggregation"
+      dp_enabled: false
+      secure_agg: true
+      secagg_noise_std: 0.005
+
+  privacy_accounting:
+    delta: 1.0e-5
+    accountant: "RDP"
+
+  evaluation_metrics:
+    - accuracy
+    - perplexity           # Shakespeare only
+    - mia_auc
+    - dlg_proxy_score
+    - communication_cost_MB

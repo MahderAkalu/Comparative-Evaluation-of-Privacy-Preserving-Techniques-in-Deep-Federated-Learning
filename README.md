@@ -18,10 +18,13 @@ gradient leakage), and communication overhead.
 ## Repository Structure
 
 ```
-├── CIFAR_10.ipynb           # Full benchmark notebook for CIFAR-10 (vision task)
-├── Shakespeare.ipynb        # Full benchmark notebook for Shakespeare (NLP task)
-├── benchmark_results.csv        # Aggregated results across all seeds and methods
-├── Images/                      # All plots and figures used in the thesis
+├── Notebooks/                                   # All experimental Jupyter notebooks
+│   ├── CIFAR_10.ipynb                           # Full benchmark notebook for CIFAR-10 (vision task)
+│   └── Shakespeare.ipynb                        # Full benchmark notebook for Shakespeare (NLP task)
+├── benchmark_results.csv                        # Aggregated results across all seeds and methods
+├── config/                                      # Experiment configuration
+│   └── experiment_config.yaml                   # Full hyperparameter and setup specification
+├── Images/                                      # All plots and figures used in the thesis
 │   ├── CIFAR 10 MIA ROC Curve Plot.png
 │   ├── CIFAR 10 Accuracy vs Rounds Plot.png
 │   ├── CIFAR 10 Privacy Utility Tradeoff Plot.png
@@ -54,8 +57,8 @@ gradient leakage), and communication overhead.
 Each notebook has a direct Colab launch button at the top. Click the badge inside 
 the notebook to open it instantly in Colab with no local setup required.
 
-- **CIFAR-10:** [`CIFAR_10.ipynb`](./CIFAR_10.ipynb)
-- **Shakespeare:** [`Shakespeare.ipynb`](./Shakespeare.ipynb)
+- **CIFAR-10:** [`CIFAR_10.ipynb`](./Notebooks/CIFAR_10.ipynb)
+- **Shakespeare:** [`Shakespeare.ipynb`](./Notebooks/Shakespeare.ipynb)
 
 
 ### 2. Run Order
